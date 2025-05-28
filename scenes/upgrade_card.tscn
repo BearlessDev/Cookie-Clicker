@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://btyagftd12c11"]
+
+[ext_resource type="FontFile" uid="uid://di7n88wvms1nh" path="res://font/Roboto-Black.ttf" id="1_ew4bf"]
+[ext_resource type="Script" uid="uid://dtqm337md7j64" path="res://scenes/upgrade_card.gd" id="1_fk0rn"]
+[ext_resource type="FontFile" uid="uid://bgvy5y7jew0ch" path="res://font/Roboto-Medium.ttf" id="2_fk0rn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fk0rn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk0rn"]
+bg_color = Color(0.760784, 0.494118, 0.176471, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+shadow_color = Color(0.678431, 0.403922, 0.0666667, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hv3p"]
+bg_color = Color(0.8, 0.533333, 0.215686, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+shadow_color = Color(0.717647, 0.443137, 0.105882, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew4bf"]
+bg_color = Color(0.839216, 0.572549, 0.254902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+shadow_color = Color(0.756863, 0.482353, 0.145098, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 5)
+anti_aliasing = false
+
+[node name="UpgradeCard" type="Button" node_paths=PackedStringArray("upgrade_name", "upgrade_description", "upgrade_price", "upgrade_owned")]
+custom_minimum_size = Vector2(410, 120)
+offset_right = 410.0
+offset_bottom = 120.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fk0rn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fk0rn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0hv3p")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ew4bf")
+script = ExtResource("1_fk0rn")
+upgrade_name = NodePath("MarginContainer/CenterContainer/Labels/UpgradeName")
+upgrade_description = NodePath("MarginContainer/CenterContainer/Labels/UpgradeDesc")
+upgrade_price = NodePath("MarginContainer/CenterContainer/Labels/UpgradePrice")
+upgrade_owned = NodePath("MarginContainer/HBoxContainer/UpgradeOwned")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="UpgradeName" type="Label" parent="MarginContainer/CenterContainer/Labels"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.631373, 0.403922, 0.172549, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_ew4bf")
+theme_override_font_sizes/font_size = 30
+text = "Upgrade Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeDesc" type="Label" parent="MarginContainer/CenterContainer/Labels"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.631373, 0.403922, 0.172549, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_fk0rn")
+theme_override_font_sizes/font_size = 20
+text = "+2 Pts / Click"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradePrice" type="Label" parent="MarginContainer/CenterContainer/Labels"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.631373, 0.403922, 0.172549, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_fk0rn")
+theme_override_font_sizes/font_size = 25
+text = "15 pts"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="UpgradeOwned" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.631373, 0.403922, 0.172549, 1)
+theme_override_fonts/font = ExtResource("1_ew4bf")
+theme_override_font_sizes/font_size = 40
+text = "16"
+horizontal_alignment = 2

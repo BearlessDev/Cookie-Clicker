@@ -1,0 +1,284 @@
+[gd_scene load_steps=23 format=3 uid="uid://6e5cu2ep4ubg"]
+
+[ext_resource type="Script" uid="uid://k286jtesepqo" path="res://scenes/main/main.gd" id="1_hyk8p"]
+[ext_resource type="FontFile" uid="uid://bgvy5y7jew0ch" path="res://font/Roboto-Medium.ttf" id="2_6q06x"]
+[ext_resource type="FontFile" uid="uid://di7n88wvms1nh" path="res://font/Roboto-Black.ttf" id="2_iuonh"]
+[ext_resource type="FontFile" uid="uid://dtacrrlpx5o5e" path="res://font/Roboto-Light.ttf" id="3_6q06x"]
+[ext_resource type="FontFile" uid="uid://ddbbgtvb2vs8" path="res://font/Roboto-Bold.ttf" id="6_ow5a4"]
+[ext_resource type="Texture2D" uid="uid://liy4fqbkwh8k" path="res://assets/Cookie.png" id="8_b1x3f"]
+[ext_resource type="Script" uid="uid://dtsve5sdyw8ct" path="res://scripts/cookie.gd" id="9_b1x3f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2fmo"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyk8p"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iuonh"]
+bg_color = Color(0, 0.698039, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k2fmo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3cfh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6q06x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ow5a4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hujxm"]
+
+[sub_resource type="Theme" id="Theme_yyfjg"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_k2fmo")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_l3cfh")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_6q06x")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_ow5a4")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_hujxm")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hujxm"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_ouso4"]
+resource_name = "Click"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_b1x3f"]
+resource_name = "Hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_a8run"]
+resource_name = "HoverReversed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_blune"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ouso4"]
+_data = {
+&"Click": SubResource("Animation_ouso4"),
+&"Hover": SubResource("Animation_b1x3f"),
+&"HoverReversed": SubResource("Animation_a8run"),
+&"RESET": SubResource("Animation_blune")
+}
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hyk8p")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.698039, 1, 1)
+
+[node name="PointsPanel" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 670.0
+offset_top = 20.0
+offset_right = 920.0
+offset_bottom = 120.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k2fmo")
+
+[node name="CenterContainer" type="CenterContainer" parent="PointsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PointsPanel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = -10
+
+[node name="PointsLabel" type="Label" parent="PointsPanel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6q06x")
+theme_override_font_sizes/font_size = 50
+text = "154 pts"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GainLabel" type="Label" parent="PointsPanel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6q06x")
+theme_override_font_sizes/font_size = 25
+text = "5 pts / sec"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradePanel" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 2
+offset_left = 1450.0
+offset_top = 20.0
+offset_right = 1900.0
+offset_bottom = 1060.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hyk8p")
+
+[node name="MarginContainer" type="MarginContainer" parent="UpgradePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradePanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Panel" parent="UpgradePanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(410, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iuonh")
+
+[node name="Label" type="Label" parent="UpgradePanel/MarginContainer/VBoxContainer/Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_iuonh")
+theme_override_font_sizes/font_size = 70
+text = "Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UpgradePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_yyfjg")
+
+[node name="UpgradeList" type="VBoxContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="OptionPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 390.0
+offset_right = 140.0
+offset_bottom = 690.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hujxm")
+
+[node name="MultiplicatorLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 20.0
+offset_top = 1013.0
+offset_right = 245.0
+offset_bottom = 1061.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = -4
+theme_override_fonts/font = ExtResource("6_ow5a4")
+theme_override_font_sizes/font_size = 40
+text = "Multiplier x3"
+
+[node name="Cookie" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 290.0
+offset_right = 1055.0
+offset_bottom = 800.0
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(255, 255)
+texture = ExtResource("8_b1x3f")
+script = ExtResource("9_b1x3f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cookie"]
+libraries = {
+&"": SubResource("AnimationLibrary_ouso4")
+}
+
+[connection signal="mouse_entered" from="Cookie" to="Cookie" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Cookie" to="Cookie" method="_on_mouse_exited"]

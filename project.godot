@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Clicker-Test"
+config/version="0.1"
+run/main_scene="uid://6e5cu2ep4ubg"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="uid://liy4fqbkwh8k"
+
+[autoload]
+
+AutoCreateDataFolder="*res://data/auto_create_data_folder.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
+window/size/window_width_override=1152
+window/size/window_height_override=648
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
+
+[gui]
+
+theme/custom_font="uid://vh1egu3y5jjr"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
