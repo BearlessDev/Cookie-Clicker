@@ -274,7 +274,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = -4
 theme_override_fonts/font = ExtResource("6_ow5a4")
 theme_override_font_sizes/font_size = 40
-text = "Multiplier x1"
+text = "Multiplier x3"
 
 [node name="Cookie" type="Button" parent="."]
 unique_name_in_owner = true
@@ -302,7 +302,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_ouso4")
 }
 
-[connection signal="card_purchased" from="UpgradePanel/MarginContainer/VBoxContainer/ScrollContainer/UpgradeList" to="PointsPanel/CenterContainer/VBoxContainer" method="_on_upgrade_list_card_purchased"]
 [connection signal="pressed" from="Cookie" to="PointsPanel/CenterContainer/VBoxContainer" method="_on_cookie_pressed"]
 [connection signal="mouse_entered" from="Cookie/TextureRect" to="Cookie/TextureRect" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Cookie/TextureRect" to="Cookie/TextureRect" method="_on_mouse_exited"]

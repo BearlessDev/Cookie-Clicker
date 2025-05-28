@@ -1,4 +1,4 @@
-extends Button
+class_name UpgradeCard extends Button
 
 
 @export var upgrade_name: Label
