@@ -22,21 +22,24 @@ var upgrades: Array[Dictionary] = [
 	}
 ]
 
-var upgrade_card
+var upgrade_card: UpgradeCard
 
 
 func _ready():
 	_create_upgrade_cards()
-	
+
 
 func _create_upgrade_cards():
 	for upgrade in upgrades:
-		upgrade_card = preload("res://scenes/upgrade_card.tscn").instantiate() as UpgradeCard
+		upgrade_card = preload("res://scenes/upgrade_card.tscn").instantiate()
 
 		upgrade_card.upgrade_name.text = upgrade.name
 		upgrade_card.upgrade_description.text = upgrade.description
 		upgrade_card.upgrade_price.text = str(upgrade.price) + " pts"
-		upgrade_card.upgrade_owned.text = str(upgrade.owned)
+		upgrade_card.pts_per_click = upgrade.pts_per_click
+		upgrade_card.pts_per_seconds = upgrade.pts_per_sec
+		
+		upgrade_card.add_to_group("card")
 		
 		upgrade_card.pressed.connect(_on_card_click.bind(upgrade_card))
 		
