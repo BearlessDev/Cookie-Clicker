@@ -302,7 +302,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_ouso4")
 }
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="card_purchased" from="UpgradePanel/MarginContainer/VBoxContainer/ScrollContainer/UpgradeList" to="PointsPanel/CenterContainer/VBoxContainer" method="_on_upgrade_list_card_purchased"]
+[connection signal="update_card" from="UpgradePanel/MarginContainer/VBoxContainer/ScrollContainer/UpgradeList" to="PointsPanel/CenterContainer/VBoxContainer" method="_on_upgrade_list_update_card"]
 [connection signal="pressed" from="Cookie" to="PointsPanel/CenterContainer/VBoxContainer" method="_on_cookie_pressed"]
 [connection signal="mouse_entered" from="Cookie/TextureRect" to="Cookie/TextureRect" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Cookie/TextureRect" to="Cookie/TextureRect" method="_on_mouse_exited"]
