@@ -5,6 +5,7 @@ const SAVE_PATH: String = DATA_FOLDER_PATH + "data.tres"
 
 @export var points: int
 @export var multiplier: int = 1
-@export var pts_per_clicks: int = 1
-@export var pts_per_seconds: int
-@export var upgrades_owned: Dictionary = {}
+@export var pts_per_click: int = 1
+@export var pts_per_sec: int
+@export var owned_upgrades: Dictionary
+@export var is_fullscreen: bool = false

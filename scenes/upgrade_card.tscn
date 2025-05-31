@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://btyagftd12c11"]
 
 [ext_resource type="FontFile" uid="uid://di7n88wvms1nh" path="res://font/Roboto-Black.ttf" id="1_ew4bf"]
-[ext_resource type="Script" uid="uid://dtqm337md7j64" path="res://scenes/upgrade_card.gd" id="1_fk0rn"]
+[ext_resource type="Script" uid="uid://dtqm337md7j64" path="res://scripts/upgrade_card.gd" id="1_fk0rn"]
 [ext_resource type="FontFile" uid="uid://bgvy5y7jew0ch" path="res://font/Roboto-Medium.ttf" id="2_fk0rn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fk0rn"]
@@ -53,6 +53,7 @@ upgrade_name = NodePath("MarginContainer/CenterContainer/Labels/UpgradeName")
 upgrade_description = NodePath("MarginContainer/CenterContainer/Labels/UpgradeDesc")
 upgrade_price = NodePath("MarginContainer/CenterContainer/Labels/UpgradePrice")
 upgrade_owned = NodePath("MarginContainer/HBoxContainer/UpgradeOwned")
+pts_per_click = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
