@@ -167,9 +167,6 @@ func _ready() -> void:
 	_create_upgrade_cards()
 	
 	pts_per_sec_timer.timeout.connect(_add_points_per_sec)
-	
-	if is_fullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 
 func _process(_delta: float) -> void:
@@ -197,25 +194,25 @@ func _input(event: InputEvent) -> void:
 
 
 func _create_upgrade_cards() -> void:
-	for upgrade in UPGRADES:
+	for i in range(UPGRADES.size()):
 		var upgrade_card: UpgradeCard = preload("res://scenes/upgrade_card.tscn").instantiate()
 		
-		if upgrade.name == "Rebirth":
-			upgrade_card.upgrade_name.text = upgrade.name
-			upgrade_card.upgrade_description.text = upgrade.description
-			upgrade_card.upgrade_price.text = format_number(upgrade.price) + " pts"
+		if UPGRADES[i]["name"] == "Rebirth":
+			upgrade_card.upgrade_name.text = UPGRADES[i]["name"]
+			upgrade_card.upgrade_description.text = UPGRADES[i]["description"]
+			upgrade_card.upgrade_price.text = format_number(UPGRADES[i]["price"]) + " pts"
 			upgrade_card.upgrade_owned.visible = false
 		
-		upgrade_card.upgrade_name.text = upgrade.name
-		upgrade_card.upgrade_description.text = upgrade.description
-		upgrade_card.upgrade_price.text = format_number(upgrade.price) + " pts"
-		upgrade_card.upgrade_owned.text = str(upgrade.owned)
-		upgrade_card.pts_per_click = upgrade.pts_per_click
-		upgrade_card.pts_per_seconds = upgrade.pts_per_sec
+		upgrade_card.upgrade_name.text = UPGRADES[i]["name"]
+		upgrade_card.upgrade_description.text = UPGRADES[i]["description"]
+		upgrade_card.upgrade_price.text = format_number(UPGRADES[i]["price"]) + " pts"
+		upgrade_card.upgrade_owned.text = str(UPGRADES[i]["owned"])
+		upgrade_card.pts_per_click = UPGRADES[i]["pts_per_click"]
+		upgrade_card.pts_per_seconds = UPGRADES[i]["pts_per_sec"]
 		
 		upgrade_card.add_to_group("card")
 		
-		upgrade_card.pressed.connect(_on_card_purshased.bind(upgrade_card))
+		upgrade_card.pressed.connect(_on_card_purshased.bind(upgrade_card, i))
 		
 		upgrade_list.add_child(upgrade_card)
 		
@@ -231,8 +228,8 @@ func _add_points_per_sec() -> void:
 	points += pts_per_sec
 
 	
-func _on_card_purshased(card: UpgradeCard):
-	var price: int = int(card.upgrade_price.text)
+func _on_card_purshased(card: UpgradeCard, i: int) -> void:
+	var price: int = UPGRADES[i]["price"]
 	
 	if points >= price:
 		points -= price
@@ -250,6 +247,7 @@ func _on_card_purshased(card: UpgradeCard):
 				owned_upgrades[upgrade.upgrade_name.text] = 0
 		
 		owned_upgrades[card.upgrade_name.text] += 1
+		
 
 
 # Format the Number ex. 10_000 = 10k and 10_000_000 = 10M
