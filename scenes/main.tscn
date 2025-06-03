@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://6e5cu2ep4ubg"]
+[gd_scene load_steps=29 format=3 uid="uid://6e5cu2ep4ubg"]
 
 [ext_resource type="Script" uid="uid://k286jtesepqo" path="res://scripts/main.gd" id="1_o6xl0"]
 [ext_resource type="FontFile" uid="uid://bgvy5y7jew0ch" path="res://font/Roboto-Medium.ttf" id="2_tipki"]
@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://ddbbgtvb2vs8" path="res://font/Roboto-Bold.ttf" id="5_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://liy4fqbkwh8k" path="res://assets/Cookie.png" id="6_eb6dy"]
 [ext_resource type="Script" uid="uid://dtsve5sdyw8ct" path="res://scripts/cookie.gd" id="7_trceg"]
+[ext_resource type="AudioStream" uid="uid://brlcvgstktr6y" path="res://sfx/level-up.mp3" id="8_85g3d"]
+[ext_resource type="AudioStream" uid="uid://cubgl6bww8pu4" path="res://sfx/background_music.mp3" id="8_tipki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2fmo"]
 bg_color = Color(1, 1, 1, 1)
@@ -300,6 +302,16 @@ libraries = {
 
 [node name="PtsPerSecTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="RebirthSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_85g3d")
+volume_db = 10.0
+bus = &"Sfx"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tipki")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="Cookie" to="." method="_add_points_on_click"]
 [connection signal="mouse_entered" from="Cookie/TextureRect" to="Cookie/TextureRect" method="_on_mouse_entered"]

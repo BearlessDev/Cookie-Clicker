@@ -146,6 +146,8 @@ var UPGRADES: Array[Dictionary] = [
 @onready var pts_per_sec_timer: Timer = $PtsPerSecTimer
 @onready var upgrade_list: VBoxContainer = %UpgradeList
 @onready var cookie: Button = %Cookie
+@onready var rebirth_sound: AudioStreamPlayer = $RebirthSound
+@onready var background_music: AudioStreamPlayer = $BackgroundMusic
 
 # Variables
 var points: int
@@ -176,13 +178,20 @@ func _process(_delta: float) -> void:
 	
 	for card: UpgradeCard in get_tree().get_nodes_in_group("card"):
 		card.upgrade_owned.text = format_number(owned_upgrades[card.upgrade_name.text])
-	
-	
+		
+		if card.upgrade_name.text == "Rebirth":
+			var i = _get_upgrade_index("Rebirth")
+			var base_price = 100_000_000_000
+			
+			UPGRADES[i]["price"] = base_price * multiplier
+			card.upgrade_price.text = format_number(UPGRADES[i]["price"]) + " pts"
+
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_save()
-		
-		
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fullscreen"):
 		if not DisplayServer.window_get_mode() == Window.MODE_FULLSCREEN:
@@ -198,9 +207,6 @@ func _create_upgrade_cards() -> void:
 		var upgrade_card: UpgradeCard = preload("res://scenes/upgrade_card.tscn").instantiate()
 		
 		if UPGRADES[i]["name"] == "Rebirth":
-			upgrade_card.upgrade_name.text = UPGRADES[i]["name"]
-			upgrade_card.upgrade_description.text = UPGRADES[i]["description"]
-			upgrade_card.upgrade_price.text = format_number(UPGRADES[i]["price"]) + " pts"
 			upgrade_card.upgrade_owned.visible = false
 		
 		upgrade_card.upgrade_name.text = UPGRADES[i]["name"]
@@ -227,7 +233,6 @@ func _add_points_on_click() -> void:
 func _add_points_per_sec() -> void:
 	points += pts_per_sec
 
-	
 func _on_card_purshased(card: UpgradeCard, i: int) -> void:
 	var price: int = UPGRADES[i]["price"]
 	
@@ -236,18 +241,17 @@ func _on_card_purshased(card: UpgradeCard, i: int) -> void:
 		
 		pts_per_click += card.pts_per_click
 		pts_per_sec += card.pts_per_seconds
+		owned_upgrades[card.upgrade_name.text] += 1
 		
 		if card.upgrade_name.text == "Rebirth":
 			points = 0
 			pts_per_click = 1
 			pts_per_sec = 0
 			multiplier += 1
+			rebirth_sound.play()
 			
 			for upgrade: UpgradeCard in get_tree().get_nodes_in_group("card"):
 				owned_upgrades[upgrade.upgrade_name.text] = 0
-		
-		owned_upgrades[card.upgrade_name.text] += 1
-		
 
 
 # Format the Number ex. 10_000 = 10k and 10_000_000 = 10M
@@ -266,6 +270,14 @@ func format_number(n: int) -> String:
 		return str(i).replace(",", ".") + "k"
 	else:
 		return str(n)
+
+
+# Get the index of an Upgrades
+func _get_upgrade_index(s: String) -> int:
+	for i in range(UPGRADES.size()):
+		if UPGRADES[i]["name"] == s:
+			return i
+	return -1
 
 
 # Data Saving/Loading
